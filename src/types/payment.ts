@@ -1,18 +1,16 @@
-export type PaymentMethod = 'vietqr' | 'visa' | 'atm';
+export type PaymentMethod = 'vietqr' | 'bank' | 'visa' | 'paypal';
 
-export interface RentItem {
-  id: string;
-  title: string;
-  imageUrl: string;
-  rentalPricePerDay: number;
-  depositAmount: number;
-  durationDays: number;
+export interface PaymentModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSuccess: (ref: string) => void; // ref: mã giao dịch trả về từ cổng
+  amount: number;
+  orderCode: string;
 }
 
-export interface CheckoutFormData {
-  fullName: string;
-  phone: string;
-  studentId: string;
-  pickupLocation: string;
-  paymentMethod: PaymentMethod;
-}
+export const METHOD_LABEL: Record<PaymentMethod, string> = {
+  vietqr: 'VietQR',
+  bank: 'Ngân hàng (ATM / Napas)',
+  visa: 'Thẻ Visa / Mastercard',
+  paypal: 'PayPal',
+};

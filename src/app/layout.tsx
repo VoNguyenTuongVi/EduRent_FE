@@ -1,38 +1,23 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import './globals.css';
 
 export const metadata: Metadata = {
-  title: "CampusRent - Nền tảng thuê đồ sinh viên",
-  description: "Dịch vụ thuê và chia sẻ đồ dùng trong khuôn viên trường đại học",
+  title: 'EduRent – Mượn đồ sinh viên',
+  description: 'Mượn đồ trong khuôn viên trường, thanh toán qua VietQR, ngân hàng, thẻ Visa hoặc PayPal',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html
-      lang="vi"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-      suppressHydrationWarning
-    >
-      <body 
-        className="min-h-full flex flex-col"
-        suppressHydrationWarning
-      >
-        {children}
+    <html lang="vi" suppressHydrationWarning>
+      <body className="min-h-screen antialiased" suppressHydrationWarning>
+        <header className="border-b border-neutral-200 bg-white">
+          <div className="max-w-3xl mx-auto px-4 h-14 flex items-center justify-between">
+            <Link href="/" className="font-semibold tracking-tight">EduRent</Link>
+            <span className="text-xs text-neutral-500">Mượn đồ sinh viên</span>
+          </div>
+        </header>
+        <main className="max-w-3xl mx-auto px-4 py-8">{children}</main>
       </body>
     </html>
   );
