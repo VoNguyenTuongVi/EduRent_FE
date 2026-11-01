@@ -10,7 +10,7 @@ export default function Receipt() {
   const p = useSearchParams();
   const method = (p.get('method') ?? 'vietqr') as PaymentMethod;
   const rows: [string, string][] = [
-    ['Đồ mượn', p.get('item') ?? '—'],
+    ['Đồ mượn', (p.get('items') ?? '—').split(' | ').join('\n')],
     ['Mã đơn', p.get('order') ?? '—'],
     ['Phương thức', METHOD_LABEL[method] ?? method],
     ['Mã giao dịch', p.get('ref') ?? '—'],
@@ -28,7 +28,7 @@ export default function Receipt() {
         {rows.map(([k, v]) => (
           <div key={k} className="flex justify-between gap-4 px-4 py-2.5 text-sm">
             <span className="text-neutral-500">{k}</span>
-            <span className="font-medium text-right break-all">{v}</span>
+            <span className="font-medium text-right break-words whitespace-pre-line">{v}</span>
           </div>
         ))}
       </div>
